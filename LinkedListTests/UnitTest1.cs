@@ -1,6 +1,5 @@
 using NUnit.Framework;
 using Exercises;
-using System;
 
 namespace Tests
 {
@@ -29,16 +28,7 @@ namespace Tests
         [TestCase(-1, null)]
         [TestCase(10, null)]
         public void GetNodeAt(int nodeNum, string ans) {
-            if (ans != null) {
-                Assert.AreEqual(ans, ll.GetNodeAt(nodeNum).Data);
-            } else {
-                var node = ll.GetNodeAt(nodeNum);
-                if (node == null) {
-                    Assert.Pass();
-                } else {
-                    Assert.Fail();
-                }
-            }
+            Assert.AreEqual(ans, ll.GetNodeAt(nodeNum).Data);
         }
         
         [TestCase(10)]
@@ -59,7 +49,7 @@ namespace Tests
             ll.AddToEnd("end");
             
             Assert.AreEqual(11, ll.Count());
-            Assert.AreEqual("end", ll.GetNodeAt(10).Data);
+            Assert.AreEqual("end", ll.GetNodeAt(11).Data);
         }
 
         [TestCase("indexFour", 4, 4, 6, "indexFour", "aeiou")]
@@ -68,27 +58,8 @@ namespace Tests
         public void AddNodeAt(string data, int index, int check1, int check2, string dataCheck1, string dataCheck2) {
             ll.AddNodeAt(data, index);
             
-            if (dataCheck1 != null) {
-                Assert.AreEqual(dataCheck1, ll.GetNodeAt(check1).Data);
-            } else {
-                var node = ll.GetNodeAt(check1);
-                if (node.Data == null) {
-                    Assert.Pass();
-                } else {
-                    Assert.Fail();
-                }
-            }
-
-            if (dataCheck2 != null) {
-                Assert.AreEqual(dataCheck2, ll.GetNodeAt(check2).Data);
-            } else {
-                var node = ll.GetNodeAt(check2);
-                if (node.Data == null) {
-                    Assert.Pass();
-                } else {
-                    Assert.Fail();
-                }
-            }
+            Assert.AreEqual(dataCheck1, ll.GetNodeAt(check1).Data);
+            Assert.AreEqual(dataCheck2, ll.GetNodeAt(check2).Data);
         }
         
         [Test]
