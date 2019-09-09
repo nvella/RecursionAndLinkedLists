@@ -21,7 +21,7 @@ namespace Tests
         [TestCase("world", true)]
         [TestCase("false", false)]
         public void Find(string searchTerm, bool ans) {
-            Assert.AreEqual(ans, ll.Find("asdf"));
+            Assert.AreEqual(ans, ll.Find("searchTerm"));
         }
         
         [TestCase(2,"qwerty")]
