@@ -19,10 +19,10 @@ namespace Tests
             rc = new RecursionLib();
         }
 
-        [TestCase(1, 0)]
+        [TestCase(1, 1)]
         [TestCase(2, 2)]
         [TestCase(3, 6)]
-        [TestCase(4, 24)]
+        [TestCase(0, 1)]
         [TestCase(5, 120)]
         [TestCase(6, 720)]
         public void FactorialRecTest(int num, int ans) {
