@@ -5,7 +5,7 @@ namespace Exercises
         public string Data;
         public ListNode Next;
 
-        public ListNode(string data, ListNode next) {
+        public ListNode(string data, ListNode next = null) {
             this.Data = data;
             this.Next = null;
         }
