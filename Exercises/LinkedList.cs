@@ -73,8 +73,10 @@ namespace Exercises
         /// Returns the number of nodes in the Linked List
         /// </summary>
         /// <returns>int: count</returns>
-        public int Count() {
-            return -1;
+        public int Count(ListNode node = null, int count = 0) {
+            if (node == null) node = Head;
+            if (node.Next == null) return count + 1;
+            return Count(node.Next, count + 1);
         }
 
         /// <summary>
@@ -83,18 +85,33 @@ namespace Exercises
         /// <param name="data"></param>
         /// <returns>success: true</returns>
         public bool AddToStart(string data) {
-            return false;
+            var node = new ListNode(data);
+            node.Next = Head;
+            Head = node;
+            return true;
         }
 
         /// <summary>
-        /// add new node at index.  If index specified is greater than the size of the current list,
+        /// Add new node at index.  If index specified is greater than the size of the current list,
         /// adds nodes with null data in between.  Negative index will return false.
         /// </summary>
         /// <param name="data"></param>
         /// <param name="index"></param>
         /// <returns></returns>
-        public bool AddNodeAt(string data, int index) {
-            return false;
+        public bool AddNodeAt(string data, int index, int count = 0, ListNode node = null, ListNode previous = null) {
+            if (node == null) node = Head;
+
+            if (index == count || index == 0)
+            {
+                var newNode = new ListNode(data);
+                newNode.Next = node;
+                if (previous != null) previous.Next = newNode;
+                return true;
+            } else
+            {
+                if(node.Next == null) node.Next = new ListNode(null);
+                return AddNodeAt(data, index, count + 1, node.Next, node);
+            }
         }
 
         /// <summary>
@@ -103,7 +120,33 @@ namespace Exercises
         /// <param name="index"></param>
         /// <returns></returns>
         public bool DeleteNodeAt(int index) {
-            return false;
+            int count = 0;
+
+            if (index < 0) return false;
+            if (Count() < 1) return false;
+            if (index == 0)
+            {
+                Head = Head.Next;
+                return true;
+            }
+
+            ListNode current = Head;
+            while (count < index - 1)
+            {
+                if (current.Next != null)
+                {
+                    current = current.Next;
+                }
+                else
+                {
+                    return false;
+                }
+                count++;
+            }
+
+            if (current.Next == null) return false;
+            current.Next = current.Next.Next;
+            return true;
         }
     }
 }
