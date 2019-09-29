@@ -87,6 +87,7 @@ namespace Exercises
         /// <param name="index"></param>
         /// <returns></returns>
         public bool AddNodeAt(string data, int index, int count = 0, ListNode node = null, ListNode previous = null) {
+            if (index < 0) return false;
             if (node == null) node = Head;
 
             if (index == count || index == 0)
