@@ -35,24 +35,12 @@ namespace Exercises
                 current.Next = newNode;
         }
         
-        public ListNode GetNodeAt(int index) {
-            int count = 0;
-
-            if (index < 0) {
-                return null;
-            }
-            
-            ListNode current = Head;
-            while (count < index) {
-                if (current.Next != null) {
-                    current = current.Next;
-                } else {
-                    return null;
-                }
-                count++;
-            }
-
-            return current;
+        public ListNode GetNodeAt(int index, ListNode currentNode = null) {
+            if (index < 0) return null;
+            if (currentNode == null) currentNode = Head;
+            if (index == 0) return currentNode;
+            if (currentNode.Next == null) return null;
+            return GetNodeAt(index - 1, currentNode.Next);
         }
 
         public bool Find(string searchTerm) {
